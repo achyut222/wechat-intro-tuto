@@ -32,6 +32,23 @@ $signPackage = $jssdk->GetSignPackage();
 	                'onMenuShareAppMessage',
 				]
     	});
+		
+		wx.ready(function () {
+	        wx.onMenuShareAppMessage({
+	            title: 'hello world', 
+	            desc: 'Im a description', 
+	            link: 'http://baidu.com', 
+	            imgUrl: 'images/squaredImage.png', 
+	            type: '', 
+	            dataUrl: '', 
+	            success: function () { 
+	                alert("you shared successfully the link");
+	            },
+	            cancel: function () { 
+	                alert("Y U DID NOT SHARED MY LINK?");
+	            }
+	        });  
+	    })
 		</script>
 	</body>
 </html>
