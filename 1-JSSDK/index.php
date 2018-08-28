@@ -1,6 +1,6 @@
 <?php
 require_once "jssdk.php";
-$jssdk = new JSSDK("wxe97fa6dd70d513ff", "8cc5d56069f4f37f4f79daf952cb4e45");
+$jssdk = new JSSDK("Wxd9de598a2e8ea592", "bad6a5b59572aea6c4ac92e14682a367");
 $signPackage = $jssdk->GetSignPackage();
 ?>
 
@@ -16,39 +16,22 @@ $signPackage = $jssdk->GetSignPackage();
     
     <body>
     	<h1> wechat test </h1>
-    	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" ></script>
-    	<script>
-		//injection authentication
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" ></script>
+		<script>
+			//injection authentication
 		wx.config({
-			debug: false,
+			debug: true,
 			appId: '<?php echo $signPackage["appId"];?>',
 			timestamp: <?php echo $signPackage["timestamp"];?>,
 			nonceStr: '<?php echo $signPackage["nonceStr"];?>',
 			signature: '<?php echo $signPackage["signature"];?>',
 			// list all APIs you are going to call in jsApiList
 			jsApiList: [
+					'scanQRCode',
+					'onMenuShareTimeline',
 	                'onMenuShareAppMessage',
 				]
     	});
-
-    	wx.ready(function () {
-	        wx.onMenuShareAppMessage({
-	            title: 'hello world', 
-	            desc: 'Im a description', 
-	            link: 'http://baidu.com', 
-	            imgUrl: 'images/squaredImage.png', 
-	            type: '', 
-	            dataUrl: '', 
-	            success: function () { 
-	                alert("you shared successfully the link");
-	            },
-	            cancel: function () { 
-	                alert("Y U DID NOT SHARED MY LINK?");
-	            }
-	        });  
-	    }); 
 		</script>
-    </body>
-
-
+	</body>
 </html>
